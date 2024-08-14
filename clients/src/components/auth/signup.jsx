@@ -35,7 +35,11 @@ export function Signup() {
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-                <div>{error}</div>
+                {error ? (
+                    <div className="bg-red-800 text-white p-3 mb-3">{error}</div>
+                ): (
+                    null
+                )}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
