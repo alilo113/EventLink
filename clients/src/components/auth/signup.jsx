@@ -9,7 +9,7 @@ export function Signup() {
     const nav = useNavigate()
 
     async function handleSubmit(e) {
-        e.preventDefault(); // Fixed typo here
+            e.preventDefault(); // Fixed typo here
         try {
             const res = await fetch("http://localhost:3000/sign-up", {
                 method: "POST",
@@ -21,13 +21,12 @@ export function Signup() {
     
             const data = await res.json();
             if (res.ok) {
-                // Redirect to login page or handle success
-                nav("/log-in"); // Ensure `nav` is correctly imported or defined
+                nav("/log-in"); 
             } else {
-                setError(data.message); // Handle error from server
+                setError(data.message); 
             }
         } catch (error) {
-            console.error("Error during fetch:", error); // Improved error logging
+            console.error("Error during fetch:", error); 
         }
     }
     

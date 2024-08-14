@@ -3,10 +3,9 @@ const app = express()
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
-const User = require('./models/User'); // Adjust the path to your model file
+const User = require('./models/User'); 
 const port = 3000
 const cors = require("cors")
-const crypto = require("crypto")
 require('dotenv').config();
 
 app.use(cors())
@@ -39,7 +38,7 @@ app.post("/log-in", async (req, res) => {
     try {
         const {email, password} = req.body;
         
-        const userExist = await User.findOne(email)
+        const userExist = await User.findOne({email})
         if(!userExist){
             return res.status(401).json({message: "wrong email or password"})
         }
@@ -61,4 +60,5 @@ app.post("/log-in", async (req, res) => {
         return res.status(500).json({ message: "Internal Server Error" });
     }
 })
+
 app.listen(port, console.log(`this app listen to port ${port}`))

@@ -2,8 +2,20 @@ import React from "react";
 import img from "../../assets/pexels-joshsorenson-976866.jpg";
 import { Link } from "react-router-dom"
 
-export function Home() {
+export function Home({userProfile, setUserProfile}) {
+    function handleLogOut(){
+        setUserProfile(null)
+        localStorage.removeItem("username")
+    }
+
     return (
+        <>
+        {userProfile ? (
+            <div>
+                <h1>{userProfile}</h1>
+                <button onClick={handleLogOut} className="bg-blue-500 p-3 text-white rounded hover:bg-blue-900">Log out</button> 
+            </div>
+        ): (
         <main
             className="relative flex items-center justify-center h-screen bg-cover bg-center"
             style={{ backgroundImage: `url(${img})` }}
@@ -21,5 +33,7 @@ export function Home() {
                 <Link  to="/log-in" className="text-white mt-3 hover:underline">I already have an account</Link>
             </div>
         </main>
+        )}
+        </>
     );
 }
