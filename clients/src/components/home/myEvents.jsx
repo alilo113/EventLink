@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Navbar } from "./navbar";
 
 export function MyEvents({ userProfile, setUserProfile }) {
     function handleLogOut() {
@@ -9,6 +10,7 @@ export function MyEvents({ userProfile, setUserProfile }) {
 
     return (
         <div className="min-h-screen bg-gray-100">
+            <Navbar/>
             <main className="p-6">
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h1 className="text-2xl font-bold mb-4">My Events</h1>
