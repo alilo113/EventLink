@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import img from "../../assets/pexels-ingo-35969.jpg"
 
 export function Signup() {
     const [username, setUserName] = useState("")
