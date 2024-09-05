@@ -9,7 +9,7 @@ export function Signup() {
     const nav = useNavigate()
 
     async function handleSubmit(e) {
-            e.preventDefault(); // Fixed typo here
+        e.preventDefault(); 
         try {
             const res = await fetch("http://localhost:3000/sign-up", {
                 method: "POST",
