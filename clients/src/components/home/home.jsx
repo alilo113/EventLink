@@ -13,8 +13,8 @@ export function Home() {
 
     const modules = {
         toolbar: [
-            [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
             ['bold', 'italic', 'underline'],
             [{ 'align': [] }],
             ['link', 'image', 'video'],
@@ -39,7 +39,7 @@ export function Home() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 ml-64 p-6">
+            <form onSubmit={handleSubmit} className="flex-1 ml-64 p-6">
                 <div className="bg-white p-4 rounded-lg shadow-md">
                     <ReactQuill 
                         value={editorValue} 
@@ -49,7 +49,7 @@ export function Home() {
                     />
                 </div>
                 <button className="bg-blue-500 text-white p-3 rounded hover:bg-blue-900 mt-3">Submit</button>
-            </div>
+            </form>
         </div>
     );
 }
