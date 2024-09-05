@@ -48,6 +48,7 @@ export function Home() {
                         modules={modules} // Pass the custom toolbar modules here
                     />
                 </div>
+                <button className="bg-blue-500 text-white p-3 rounded hover:bg-blue-900 mt-3">Submit</button>
             </div>
         </div>
     );
