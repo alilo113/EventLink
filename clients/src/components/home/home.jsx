@@ -1,5 +1,13 @@
 import React from "react";
 
 export function Home(){
-    return null
+    return (
+        <div>
+            <div>
+            </div>
+            <div>
+
+            </div>
+        </div>
+    )
 }
