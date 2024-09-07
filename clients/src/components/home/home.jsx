@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import ReactQuill from "react-quill";
 import { useState } from "react";
 import 'react-quill/dist/quill.snow.css'; // Import ReactQuill styles
-import img from "../../assets/user.png"
+import img from "../../assets/user.png";
 
-export function Home() {
-    const [editorValue, setEditorValue] = useState('');
-
-    const handleChange = (value) => {
-        setEditorValue(value);
-    };
+export function Home({ userProfile }) {
+    const [editorValue, setEditorValue] = useState([]);
+    const quillRef = useRef(null); // Create a ref for ReactQuill
 
     const modules = {
         toolbar: [
@@ -22,13 +19,19 @@ export function Home() {
         ],
     };
 
+    function handleSubmit(event) {
+        event.preventDefault();
+        setEditorValue(quillRef.current.getEditor().getContents()); // Safely reference Quill
+        console.log(editorValue);
+    }
+
     return (
         <div className="flex min-h-screen bg-gray-300">
             {/* Sidebar */}
             <div className="bg-white w-64 h-full fixed top-0 left-0 flex flex-col shadow-lg">
                 <div className="p-4 flex flex-col items-center">
                     <img src={img} alt="User" className="w-16 h-16 rounded-full" />
-                    <h2 className="text-center mt-2 font-semibold text-gray-700">Username</h2>
+                    <h2 className="text-center mt-2 font-semibold text-gray-700">{userProfile}</h2>
                 </div>
                 <nav className="mt-4 flex flex-col space-y-2">
                     <a href="#" className="px-4 py-2 hover:bg-gray-200 rounded-lg transition">Dashboard</a>
@@ -37,13 +40,13 @@ export function Home() {
                     <a href="#" className="px-4 py-2 hover:bg-gray-200 rounded-lg transition">Logout</a>
                 </nav>
             </div>
-
             {/* Main Content */}
             <form onSubmit={handleSubmit} className="flex-1 ml-64 p-6">
                 <div className="bg-white p-4 rounded-lg shadow-md">
                     <ReactQuill 
+                        ref={quillRef} // Assign the ref here
                         value={editorValue} 
-                        onChange={handleChange} 
+                        onChange={setEditorValue} 
                         theme="snow"
                         modules={modules} // Pass the custom toolbar modules here
                     />
