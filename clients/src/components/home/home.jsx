@@ -1,30 +1,21 @@
-import React, { useRef, useState, useEffect } from "react";
-import ReactQuill from "react-quill";
-import 'react-quill/dist/quill.snow.css'; // Import ReactQuill styles
+import React, { useState } from "react";
 import img from "../../assets/user.png";
 
 export function Home({ userProfile }) {
-    const [editorValue, setEditorValue] = useState([]);
-    const quillRef = useRef(null);
-
-    const modules = {
-        toolbar: [
-            [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            ['bold', 'italic', 'underline'],
-            [{ 'align': [] }],
-            ['link', 'image', 'video'],
-            ['clean'] // Add this to include the clear formatting button
-        ],
-    };
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [location, setLocation] = useState("");
+    const [eventDate, setEventDate] = useState("");
 
     function handleSubmit(event) {
         event.preventDefault();
-        if (quillRef.current) {
-            const editor = quillRef.current.getEditor(); // Safely access the editor
-            setEditorValue(editor.getContents());
-        }
-        console.log(editorValue);
+        // You can handle form submission here
+        console.log({
+            title,
+            description,
+            location,
+            eventDate
+        });
     }
 
     return (
@@ -44,13 +35,51 @@ export function Home({ userProfile }) {
             </div>
             {/* Main Content */}
             <form onSubmit={handleSubmit} className="flex-1 ml-64 p-6">
+                {/* Event Title */}
                 <div className="bg-white p-4 rounded-lg shadow-md">
-                    <ReactQuill 
-                        ref={quillRef} // Assign the ref here
-                        value={editorValue} 
-                        onChange={setEditorValue} 
-                        theme="snow"
-                        modules={modules} // Pass the custom toolbar modules here
+                    <label htmlFor="title" className="block text-gray-700 font-semibold">Event Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        className="w-full p-2 mt-2 border rounded"
+                        placeholder="Enter event title"
+                    />
+                </div>
+                {/* Event Description */}
+                <div className="bg-white p-4 mt-4 rounded-lg shadow-md">
+                    <label htmlFor="description" className="block text-gray-700 font-semibold">Event Description</label>
+                    <textarea
+                        id="description"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                        className="w-full p-2 mt-2 border rounded"
+                        placeholder="Enter event description"
+                        rows="6"
+                    />
+                </div>
+                {/* Event Location */}
+                <div className="bg-white p-4 mt-4 rounded-lg shadow-md">
+                    <label htmlFor="location" className="block text-gray-700 font-semibold">Event Location</label>
+                    <input
+                        type="text"
+                        id="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="w-full p-2 mt-2 border rounded"
+                        placeholder="Enter event location"
+                    />
+                </div>
+                {/* Event Date */}
+                <div className="bg-white p-4 mt-4 rounded-lg shadow-md">
+                    <label htmlFor="eventDate" className="block text-gray-700 font-semibold">Event Date</label>
+                    <input
+                        type="date"
+                        id="eventDate"
+                        value={eventDate}
+                        onChange={(e) => setEventDate(e.target.value)}
+                        className="w-full p-2 mt-2 border rounded"
                     />
                 </div>
                 <button className="bg-blue-500 text-white p-3 rounded hover:bg-blue-900 mt-3">Submit</button>
