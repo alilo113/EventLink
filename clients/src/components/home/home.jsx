@@ -1,12 +1,11 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReactQuill from "react-quill";
-import { useState } from "react";
 import 'react-quill/dist/quill.snow.css'; // Import ReactQuill styles
 import img from "../../assets/user.png";
 
 export function Home({ userProfile }) {
     const [editorValue, setEditorValue] = useState([]);
-    const quillRef = useRef(null); // Create a ref for ReactQuill
+    const quillRef = useRef(null);
 
     const modules = {
         toolbar: [
@@ -21,7 +20,10 @@ export function Home({ userProfile }) {
 
     function handleSubmit(event) {
         event.preventDefault();
-        setEditorValue(quillRef.current.getEditor().getContents()); // Safely reference Quill
+        if (quillRef.current) {
+            const editor = quillRef.current.getEditor(); // Safely access the editor
+            setEditorValue(editor.getContents());
+        }
         console.log(editorValue);
     }
 
