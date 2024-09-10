@@ -3,7 +3,8 @@ const app = express()
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
-const User = require('./models/User'); 
+const User = require('./models/User');
+const event = require("./models/event") 
 const port = 3000
 const cors = require("cors")
 require('dotenv').config();
@@ -58,6 +59,19 @@ app.post("/log-in", async (req, res) => {
     } catch (error) {
         console.error("Login error:", error);
         return res.status(500).json({ message: "Internal Server Error" });
+    }
+})
+
+
+app.post("/", async (req, res) => {
+    try {
+        const { event } = req.body;
+        const newEvent = new event({event: event})
+        await newEvent.save()
+        res.status(201).json({message: "event created!!!"})
+    } catch (error) {
+        res.status(500).json({ error: "Internal Server Error" });
+        console.log(error)
     }
 })
 
