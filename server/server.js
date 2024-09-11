@@ -65,8 +65,8 @@ app.post("/log-in", async (req, res) => {
 
 app.post("/", async (req, res) => {
     try {
-        const { event } = req.body;
-        const newEvent = new event({event: event})
+        const { title, location, date, description } = req.body;
+        const newEvent = new event({title: title, location: location, date: date, description: description})
         await newEvent.save()
         res.status(201).json({message: "event created!!!"})
     } catch (error) {
