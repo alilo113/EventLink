@@ -8,31 +8,23 @@ export function Modal({ onSubmit, onClose, eventDetails, onInputChange }) {
 
                 <input
                     type="text"
-                    value={eventDetails.title}
-                    onChange={onInputChange}
                     name="title"
                     className="border p-2 w-full mb-4 rounded"
                     placeholder="Event Title"
                 />
                 <input
                     type="text"
-                    value={eventDetails.location}
-                    onChange={onInputChange}
                     name="location"
                     className="border p-2 w-full mb-4 rounded"
                     placeholder="Location"
                 />
                 <input
                     type="date"
-                    value={eventDetails.date}
-                    onChange={onInputChange}
                     name="date"
                     className="border p-2 w-full mb-4 rounded"
                 />
                 <textarea
                     name="description"
-                    value={eventDetails.description}
-                    onChange={onInputChange}
                     className="border p-2 w-full mb-4 rounded"
                     placeholder="Event Description"
                 />

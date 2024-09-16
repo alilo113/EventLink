@@ -12,12 +12,10 @@ export function Home({ userProfile }) {
         description: ""
     });
 
-    // Toggle modal visibility
     function handleClick() {
         setIsModalOpen(true);
     }
 
-    // Handle input change for event details
     function handleInputChange(e) {
         const { name, value } = e.target;
         setEventDetails({
@@ -26,33 +24,8 @@ export function Home({ userProfile }) {
         });
     }
 
-    // Handle modal close
     function closeModal() {
         setIsModalOpen(false);
-    }
-
-    // Submit the event
-    async function handleSubmit() {
-        try {
-            const res = await fetch("http://localhost:3000/", { // Adjust URL as needed
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(eventDetails) // Pass event details
-            });
-
-            const data = await res.json();
-            if (res.ok) {
-                setEvent([...event, data]);
-                console.log(event);
-                closeModal(); // Close modal after successful submit
-            } else {
-                console.error('Failed to submit event:', data);
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
     }
 
     return (
